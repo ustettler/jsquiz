@@ -49,6 +49,10 @@
 
             answers.push(incorrect)
 
+            // Random Answers
+            let randomAnswers = Math.floor(Math.random() * answers.length);
+            answers.innerHTML = randomAnswers;
+
         }
 
         //console.log("antwort: " + answers)
@@ -108,6 +112,8 @@
     })
 
     activateSlide(0)
+
+
 
  // Input = correct answer , Answers random Anzeigen
 
