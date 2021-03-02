@@ -29,11 +29,11 @@
 
 
          // Div für die Korrekte Antwort
-         const correct =
+        const correct =
          `<label>
          <input type="radio">
          ${item.correct_answer}
-         </label>`
+         </label>`;
 
          answers.push(correct)
 
@@ -53,12 +53,19 @@
             let randomAnswers = Math.floor(Math.random() * answers.length);
             answers.innerHTML = randomAnswers;
 
+             // Template Result
+            const result =
+            `<div id="result">
+            ${item.correct_answer}
+            </div>`;
+
+
         }
 
         //console.log("antwort: " + answers)
 
 
-        // Template for Question
+        // Template for Anwsers/Question
         const template =
         `<div class="slide">
         <div class="question">
@@ -85,11 +92,19 @@
         slides[number].classList.add("active-slide")
         currentSlide = number
 
-      /*   if(currentSlide === 0) {
+        // Wenn der Slider bei Frage 0 ist, wird der NextButton verstecken
+        if(currentSlide === 0) {
             prevButton.style.display="none";
         } else {
             prevButton.style.display="inline-block";
-        } */
+        }
+
+        // Bei der Frage 20 wird der PrevButton versteckt
+        if(currentSlide === 19) {
+            nextButton.style.display="none";
+        } else {
+            nextButton.style.display="inline-block";
+        }
     }
 
     // Prev/Next Button
@@ -115,6 +130,10 @@
 
 
 
- // Input = correct answer , Answers random Anzeigen
+
+
+ // Input = correct answer
+
+ // Geändert: Random Question, Next/Prev Button Transparent, Korrektes Resultat anzeigen (in progress)
 
 })();
