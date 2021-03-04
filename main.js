@@ -31,7 +31,7 @@
          // Div für die Korrekte Antwort
         const correct =
          `<label>
-         <input type="radio">
+         <input type="radio" name="answer">
          ${item.correct_answer}
          </label>`;
 
@@ -39,15 +39,17 @@
 
         for(const itemIncorrect of item.incorrect_answers){
             //console.log("incorrecht: " +itemIncorrect)
-    
+
             // Div für falsche Antworten
             const incorrect =
             `<label>
-            <input type="radio">
+            <input type="radio" name="answer">
             ${itemIncorrect}
             </label>`
 
             answers.push(incorrect)
+
+            console.log("Antworten:" + answers)
 
             // Random Answers
             let randomAnswers = Math.floor(Math.random() * answers.length);
@@ -134,6 +136,8 @@
 
  // Input = correct answer
 
- // Geändert: Random Question, Next/Prev Button Transparent, Korrektes Resultat anzeigen (in progress)
+ // FEHLER: correct-answer ist immer zuerst und ohne Radiobutton
+
+ // Geändert: Random Question / Next/Prev Button Transparent / Radiobutton mit name="anwers" versehen, so nur eine möglichkeit/  Korrektes Resultat anzeigen (in progress)
 
 })();
