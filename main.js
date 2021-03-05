@@ -43,17 +43,14 @@
             // Div für falsche Antworten
             const incorrect =
             `<label>
-            <input type="radio" name="answer">
+            <input type="radio" name="answers">
             ${itemIncorrect}
-            </label>`
+            </label>`;
 
             answers.push(incorrect)
 
-            console.log("Antworten:" + answers)
+            //console.log("Antworten:" + answers)
 
-            // Random Answers
-            let randomAnswers = Math.floor(Math.random() * answers.length);
-            answers.innerHTML = randomAnswers;
 
              // Template Result
             const result =
@@ -67,13 +64,15 @@
         //console.log("antwort: " + answers)
 
 
+        answers = shuffleArray(answers)
+
         // Template for Anwsers/Question
         const template =
         `<div class="slide">
         <div class="question">
         ${item.question}
         </div>
-        <div class="answers>
+        <div class="answers">
         ${answers.join('')}
         </div>
         </div> `;
@@ -102,7 +101,7 @@
         }
 
         // Bei der Frage 20 wird der PrevButton versteckt
-        if(currentSlide === 19) {
+        if(currentSlide === numberOfSlides -1) {
             nextButton.style.display="none";
         } else {
             nextButton.style.display="inline-block";
@@ -130,14 +129,17 @@
 
     activateSlide(0)
 
+    function shuffleArray(array) {
+        for (var i = 0; i < array.length - 1; i++) {
+            // random number erstellen
+            var j = Math.floor(Math.random() * (array.length));
+            // tauschen
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array
+      }
 
-
-
-
- // Input = correct answer
-
- // FEHLER: correct-answer ist immer zuerst und ohne Radiobutton
-
- // Geändert: Random Question / Next/Prev Button Transparent / Radiobutton mit name="anwers" versehen, so nur eine möglichkeit/  Korrektes Resultat anzeigen (in progress)
 
 })();
