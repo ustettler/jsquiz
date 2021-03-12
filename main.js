@@ -7,6 +7,7 @@
     const quizContainer = document.getElementById('quiz');
     const resultsContainer = document.getElementById('results');
     const submitButton = document.getElementById('submit');
+    const newButton = document.getElementById("new");
 
     let numberOfSlides = response.results.length;
     //console.log("slide " + numberOfSlides)
@@ -22,6 +23,7 @@
 
 
     // for..in Loop durch response.results, mit "item" kann man danach darauf zugreifen
+    let i = 0;
     for(const item of response.results) {
         //console.log(item)
 
@@ -31,8 +33,8 @@
          // Div für die Korrekte Antwort
         const correct =
          `<label>
-         <input type="radio" name="right">
-         ${item.correct_answer} HIER
+         <input type="radio" name="answer${i}" value="right">
+         ${item.correct_answer} Korrekt
          </label>`;
 
          answers.push(correct)
@@ -43,7 +45,7 @@
             // Div für falsche Antworten
             const incorrect =
             `<label>
-            <input type="radio" name="wrong">
+            <input type="radio" name="answer${i}" >
             ${itemIncorrect}
             </label>`;
 
@@ -71,6 +73,7 @@
         // In DOM einfügen
         quizContainer.innerHTML += template;
 
+        i++
     }
 
     const slides = document.querySelectorAll(".slide");
@@ -117,13 +120,18 @@
     activateSlide(currentSlide+1)
     })
 
+    // Browser neu Laden
+    newButton.addEventListener('click', () => {
+        window.location.reload()
+    })
+
     submitButton.addEventListener('click', () => {
 
-    let counter = 0;    
+    let counter = 0;
 
     let answers = document.getElementsByTagName("input")
     for(const item of answers){
-    if (item.checked && item.name == "right"){
+    if (item.checked && item.value == "right"){
         counter++
     }
 
