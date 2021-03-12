@@ -31,8 +31,8 @@
          // Div für die Korrekte Antwort
         const correct =
          `<label>
-         <input type="radio" name="answer">
-         ${item.correct_answer}
+         <input type="radio" name="right">
+         ${item.correct_answer} HIER
          </label>`;
 
          answers.push(correct)
@@ -43,20 +43,11 @@
             // Div für falsche Antworten
             const incorrect =
             `<label>
-            <input type="radio" name="answers">
+            <input type="radio" name="wrong">
             ${itemIncorrect}
             </label>`;
 
             answers.push(incorrect)
-
-            //console.log("Antworten:" + answers)
-
-
-             // Template Result
-            const result =
-            `<div id="result">
-            ${item.correct_answer}
-            </div>`;
 
 
         }
@@ -124,6 +115,25 @@
     //console.log("nextButton")
 
     activateSlide(currentSlide+1)
+    })
+
+    submitButton.addEventListener('click', () => {
+
+    let counter = 0;    
+
+    let answers = document.getElementsByTagName("input")
+    for(const item of answers){
+    if (item.checked && item.name == "right"){
+        counter++
+    }
+
+    }
+
+    resultsContainer.innerHTML = `you have ${counter} correct answers`;
+
+
+
+
 
     })
 
